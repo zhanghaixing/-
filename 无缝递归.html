@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		div,
+		ul,
+		li,
+		img,
+		h2,
+		p{
+			margin:0;
+			padding:0;
+		}
+		#box{
+			width:356px;
+			height:500px;
+			border:1px solid #000;
+			position:relative;
+			margin:100px auto;
+			overflow:hidden;
+		}
+		ul{
+			list-style: none;
+			position:absolute;
+			left:0;
+			top:0;
+		}
+		li{
+			float:left;
+		}
+		img{
+			width:356px;
+			height:500px;
+		}
+		.bottomBox{
+			width:356px;
+			height:120px;
+			position:absolute;
+			left:0;
+			top:500px;
+			background-color:rgba(0,0,0,0.4);
+			color:#fff;
+		}
+	</style>
+	<script src="MTween.js"></script>
+	<script src="tools.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			var list = $("#list")
+			var allLi = $("li",list)
+			var allBox =$(".bottomBox")
+			var oneLiW = parseInt(getStyle(allLi[0],"width"))
+			var len = allLi.length;
+			list.style.width=oneLiW*len +"px";
+			/*500 380*/
+			var n = 0 ;
+			fn();
+				function fn(){
+					setTimeout(function(){
+						MTween(allBox[n],"top",500,500,"linear",function(){
+							n++
+							MTween(list,"left",500,-n*oneLiW,"linear",function(){
+								MTween(allBox[n],"top",500,380,"linear",function(){
+									if(n==len-1){//还原到和初始状态完全一样
+										list.style.left=0;
+										allBox[0].style.top =380+"px";
+										allBox[len-1].style.top =500+"px";
+										n=0;
+									}
+									fn();//递归
+								})
+							})
+						})
+					}
+				,1000)
+				}
+		}
+	</script>
+</head>
+<body>
+	<div id = "box">
+		<ul id = "list">
+			<li><img src ="images/index.jpg"/></li>
+			<li><img src ="images/jaime Lannister.jpg"/></li>
+			<li><img src = "images/Tyrion Lannister.jpg"/></li>
+			<li><img src = "images/Robb Stark.jpg"/></li>
+			<li><img src = "images/Jon Snow.jpg"/></li>
+			<li><img src = "images/Daenerys Targaryen.jpg"/></li>
+			<li><img src ="images/index.jpg"/></li>
+		</ul>
+		<div class="bottomBox" style="top:380px;"><h2>冰与火之歌 权力的游戏</h2><p>
+			该剧改编自美国作家乔治·R·R·马丁的奇幻小说《冰与火之歌》系列。
+		</p></div>
+		<div class="bottomBox"><h2>詹姆·兰尼斯特</h2><p>凯岩城领主泰温·兰尼斯特的长子。詹姆年仅十五岁就加入了疯王伊里斯的御林铁卫，是这支享有极高声誉的传奇性骑士队伍史上最年轻的成员。在篡夺者战争中杀死了疯王伊耿，由此得名“弑君者”。</p></div>
+		<div class="bottomBox"><h2>提利昂·兰尼斯特</h2><p>他是西境守护、凯岩城公爵泰温·兰尼斯特最小的孩子，是个容貌丑陋的侏儒。提利昂非常喜爱读书，善于思考，富有谋略。</p></div>
+		<div class="bottomBox"><h2>罗柏·史塔克</h2><p>头衔“北境之王”，别名少狼主，临冬城公爵艾德·史塔克的长子，临冬城的继承人。他的冰原狼名为“灰风（Grey Wind）”。由于违背与佛雷家族婚约，最终于伊耿历299AL被瓦德·佛雷以参加婚宴名义杀害于孪河城，世称“红色婚礼”事件</p></div>
+		<div class="bottomBox"><h2>琼恩雪诺</h2><p>You know nothing.</p></div>
+		<div class="bottomBox"><h2>丹妮莉丝.</h2><p>安达尔人、洛伊拿人和先民的女王/七国女王/统治者、全境守护、大草海的卡丽熙、镣铐/锁链破除者、弥林女王、龙石岛公主/不焚者、龙之母、弥莎、母亲、银发女王、银发女士、龙女王</p></div>
+		<div class="bottomBox" ><h2>冰与火之歌 权力的游戏</h2><p>
+			该剧改编自美国作家乔治·R·R·马丁的奇幻小说《冰与火之歌》系列。
+		</p></div>
+	</div>
+</body>
+</html>
